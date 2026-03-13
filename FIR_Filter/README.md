@@ -21,4 +21,3 @@ Pipelined FIR low-pass filter implemented in Verilog HDL on Xilinx Vivado.
 - Xilinx Vivado 2025.2
 - MATLAB (coefficient generation)
 - Target Board: Digilent Basys3 (XC7A35T)
-```
