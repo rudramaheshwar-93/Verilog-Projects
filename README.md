@@ -1,38 +1,27 @@
 # Verilog Projects
 
-This repository contains digital design projects written in **Verilog HDL**, implemented and simulated using **Xilinx Vivado**. Each project folder includes the RTL design file, testbench, constraints, and simulation waveforms.
-
----
-
-## What's inside each project folder
-
-- RTL design file (`.v`)
-- Testbench (`_tb.v`)
-- Constraints file (`.xdc`)
-- Simulation waveforms
-
----
+This repository contains digital design projects written in Verilog HDL, implemented and simulated using Xilinx Vivado. Each project folder includes the RTL design, testbench, and simulation waveforms.
 
 ## Projects
 
 | Folder | Description | Status |
 |--------|-------------|--------|
 | `FIR_Filter/` | 16-tap low-pass FIR filter, pipelined, 100 MHz | Done |
-| more coming soon | more projects will be added | Soon |
+| `JK_FF/` | JK Flip-Flop with all input combinations verified | Done |
+| `Ripple_Adder/` | N-bit ripple carry adder with carry propagation | Done |
+| `SR_FF/` | SR Flip-Flop with forbidden state handling | Done |
 
----
+## What's inside each project folder
+
+- RTL design file (`.v`)
+- Testbench (`_tb.v`)
+- Simulation waveforms
 
 ## Tools Used
 
-- Xilinx Vivado 2025.2
-- MATLAB (coefficient generation)
-- Digilent Basys3 / Artix-7 FPGA
-
----
+- Xilinx Vivado (simulation only)
+- Verilog HDL
 
 ## About
 
-These projects are part of my learning journey in digital design and FPGA development. I am currently exploring DSP, RTL design, and hardware description languages.
-
----
-
+These projects are part of my learning journey in digital design and FPGA development. I am currently exploring RTL design, sequential/combinational circuits, DSP, and hardware description languages.
