@@ -36,4 +36,3 @@ These projects are part of my learning journey in digital design and FPGA develo
 
 ---
 
-*rudramaheshwar-93 · Currently learning about Tech and AI/ML*
