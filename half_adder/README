@@ -1,1 +1,14 @@
-
+# Half Adder
+A Verilog implementation of a half adder combinational logic circuit for single-bit binary addition.
+ 
+## Inputs / Outputs
+- Inputs: A, B
+- Outputs: SUM, CARRY
+ 
+## Files
+- `half_adder.v` — RTL design
+- `half_adder_tb.v` — Testbench
+ 
+## Simulation
+Simulated using Xilinx Vivado. All input combinations (00, 01, 10, 11) are tested and documented in waveforms.
+ 
