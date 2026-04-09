@@ -1,17 +1,15 @@
 # Half Adder
 
-A Verilog implementation of a Half Adder with all input combinations (00, 01, 10, 11) verified through simulation.
+A Verilog implementation of a Half Adder with all four input combinations (00, 01, 10, 11) verified through simulation.
 
 ## Inputs / Outputs
-
-- Inputs: A, B  
-- Outputs: SUM, CARRY  
+- Inputs: a,b
+- Outputs: Sum,Carry
 
 ## Files
-
-- `half_adder.v` — RTL design  
-- `half_adder_tb.v` — Testbench  
+- `half_adder.v` — RTL design
+- `half_adder_tb.v` — Testbench
+- `half_adder.png` — Waveform
 
 ## Simulation
-
-Simulated using Xilinx Vivado. Waveforms verify correct sum and carry generation for all input combinations.
+Simulated using Xilinx Vivado. Waveforms verified for all input combinations of 00,01,10,11.
