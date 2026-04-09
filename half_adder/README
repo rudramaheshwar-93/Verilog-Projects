@@ -1,14 +1,17 @@
-# JK Flip-Flop
+# Half Adder
 
-A Verilog implementation of a JK Flip-Flop with all four input combinations (00, 01, 10, 11) verified through simulation.
+A Verilog implementation of a Half Adder with all input combinations (00, 01, 10, 11) verified through simulation.
 
 ## Inputs / Outputs
-- Inputs: J, K, CLK, RST
-- Outputs: Q, Q_bar
+
+- Inputs: A, B  
+- Outputs: SUM, CARRY  
 
 ## Files
-- `jk_ff.v` — RTL design
-- `jk_ff_tb.v` — Testbench
+
+- `half_adder.v` — RTL design  
+- `half_adder_tb.v` — Testbench  
 
 ## Simulation
-Simulated using Xilinx Vivado. Waveforms verify hold, reset, set, and toggle behaviour.
+
+Simulated using Xilinx Vivado. Waveforms verify correct sum and carry generation for all input combinations.
