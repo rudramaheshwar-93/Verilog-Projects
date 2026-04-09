@@ -10,12 +10,12 @@ This repository contains digital design projects written in Verilog HDL, impleme
 |--------|-------------|--------|
 | FIR_Filter/ | 16-tap low-pass FIR filter, pipelined, 100 MHz | Done |
 | JK_FF/ | JK Flip-Flop with all input combinations verified | Done |
-| Ripple_Adder/ | N-bit ripple carry adder with carry propagation | Done |
+| Ripple_Adder/ | 4-bit ripple carry adder with carry propagation | Done |
 | SR_FF/ | SR Flip-Flop with forbidden state handling | Done |
-| Sequence_Detector/ | FSM-based sequence detector (e.g., "1011") | Done |
-| Half_Adder/ | Basic 1-bit half adder | Done |
-| Counter/ | N-bit synchronous up/down counter | Done |
-| Mux/ | N-bit, 2-to-1 multiplexer | Done |
+| Sequence_Detector/ | FSM-based sequence detector | Done |
+| Half_Adder/ | Basic half adder | Done |
+| Counter/ | 4-bit synchronous up/down counter | Done |
+| Mux/ | 2-bit, 4-to-1 multiplexer | Done |
 
 ## What's inside each project folder
 
