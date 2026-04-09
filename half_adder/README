@@ -1,18 +1,17 @@
 # Half Adder
 
-A Verilog implementation of a Half Adder that performs binary addition of two single-bit inputs and produces sum and carry outputs. All input combinations (00, 01, 10, 11) are verified through simulation.
+A Verilog implementation of a Half Adder with all input combinations (00, 01, 10, 11) verified through simulation.
 
 ## Inputs / Outputs
+
 - Inputs: A, B  
 - Outputs: SUM, CARRY  
 
 ## Files
+
 - `half_adder.v` — RTL design  
 - `half_adder_tb.v` — Testbench  
 
-## Functionality
-- SUM = A ⊕ B  
-- CARRY = A · B  
-
 ## Simulation
-Simulated using Xilinx Vivado. Waveforms confirm correct operation for all input combinations, verifying proper sum and carry generation.
+
+Simulated using Xilinx Vivado. Waveforms verify correct sum and carry generation for all input combinations.
