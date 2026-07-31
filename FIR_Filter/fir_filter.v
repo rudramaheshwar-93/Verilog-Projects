@@ -1,9 +1,3 @@
-// ============================================================
-// 16-Tap FIR Low-Pass Filter - Pipelined Architecture
-// Target: Xilinx Vivado | Clock: 100 MHz
-// Language: Pure Verilog (IEEE 1364-2001) - NO SystemVerilog
-// ============================================================
-
 module fir_filter #(
     parameter DATA_WIDTH = 16,
     parameter COEF_WIDTH = 16,
@@ -18,12 +12,6 @@ module fir_filter #(
     output reg                          valid_out
 );
 
-    // -------------------------------------------------------
-    // FIR Coefficients: Hamming Window, Fc=0.2*Fs, Q1.15
-    // In pure Verilog-2001, arrays cannot use '{...} init.
-    // Each coefficient is a separate localparam instead.
-    // MATLAB: round(fir1(15, 0.2, hamming(16)) * 32768)
-    // -------------------------------------------------------
     localparam signed [COEF_WIDTH-1:0] C0 = 16'sh0066; //  102
     localparam signed [COEF_WIDTH-1:0] C1 = 16'sh0106; //  262
     localparam signed [COEF_WIDTH-1:0] C2 = 16'sh031A; //  794
@@ -32,12 +20,7 @@ module fir_filter #(
     localparam signed [COEF_WIDTH-1:0] C5 = 16'sh1396; // 5014
     localparam signed [COEF_WIDTH-1:0] C6 = 16'sh183A; // 6202
     localparam signed [COEF_WIDTH-1:0] C7 = 16'sh1A5C; // 6748 (center)
-    // Symmetric: C8=C7, C9=C6, C10=C5 ... C15=C0
 
-    // -------------------------------------------------------
-    // Stage 1: Shift Register (Sample Delay Line)
-    // 16 individual regs - compatible with Verilog-2001
-    // -------------------------------------------------------
     reg signed [DATA_WIDTH-1:0] sr0,  sr1,  sr2,  sr3;
     reg signed [DATA_WIDTH-1:0] sr4,  sr5,  sr6,  sr7;
     reg signed [DATA_WIDTH-1:0] sr8,  sr9,  sr10, sr11;
@@ -65,11 +48,6 @@ module fir_filter #(
         end
     end
 
-    // -------------------------------------------------------
-    // Stage 2a: Symmetric Pair Sums (registered)
-    // ss[k] = sr[k] + sr[15-k]
-    // This halves the multiplier count: 16 -> 8
-    // -------------------------------------------------------
     reg signed [DATA_WIDTH:0] ss0, ss1, ss2, ss3;
     reg signed [DATA_WIDTH:0] ss4, ss5, ss6, ss7;
 
@@ -88,11 +66,6 @@ module fir_filter #(
             ss7 <= {sr7[DATA_WIDTH-1],  sr7}  + {sr8[DATA_WIDTH-1],  sr8};
         end
     end
-
-    // -------------------------------------------------------
-    // Stage 2b: Multiply each symmetric sum by coefficient
-    // Product width = (DATA_WIDTH+1) + COEF_WIDTH = 33 bits
-    // -------------------------------------------------------
     localparam MULT_WIDTH = DATA_WIDTH + COEF_WIDTH + 1; // 33
 
     reg signed [MULT_WIDTH-1:0] m0, m1, m2, m3;
@@ -116,15 +89,10 @@ module fir_filter #(
         end
     end
 
-    // -------------------------------------------------------
-    // Stage 3: Pipelined Adder Tree  8 -> 4 -> 2 -> 1
-    // Sign-extend products to ACC_WIDTH before adding
-    // -------------------------------------------------------
     reg signed [ACC_WIDTH-1:0] a0, a1, a2, a3;
     reg signed [ACC_WIDTH-1:0] b0, b1;
     reg signed [ACC_WIDTH-1:0] acc;
 
-    // Sign-extend helper wires
     wire signed [ACC_WIDTH-1:0] em0, em1, em2, em3;
     wire signed [ACC_WIDTH-1:0] em4, em5, em6, em7;
 
@@ -148,24 +116,17 @@ module fir_filter #(
         end else begin
             valid_p2 <= valid_p1;
 
-            // Level 1: 8 products -> 4 sums
             a0 <= em0 + em1;
             a1 <= em2 + em3;
             a2 <= em4 + em5;
             a3 <= em6 + em7;
 
-            // Level 2: 4 -> 2
             b0 <= a0 + a1;
             b1 <= a2 + a3;
-
-            // Level 3: 2 -> 1
             acc <= b0 + b1;
-
-            // Truncate Q1.15: drop 15 fractional bits
-            // acc[30:15] gives the 16-bit output
+            
             data_out  <= acc[DATA_WIDTH+15-1 : 15];
             valid_out <= valid_p2;
         end
     end
-
 endmodule
